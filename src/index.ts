@@ -15,12 +15,12 @@ export function staticImport ():boolean {
 /**
  * Are dynamic imports supported?
  */
-export async function dynamicImport ():Promise<boolean> {
+export async function dynamicImport (path:string):Promise<boolean> {
     try {
-        // @ts-expect-error feature detection
-        await import('')
+        await import(path)
         return true
     } catch (_err) {
+        console.log('errrrrrr', _err)
         return false
     }
 }
