@@ -33,5 +33,9 @@ import { importMap, dynamicImport, staticImport } from '../src/index.js'
             output from the dynamicly imported file...
         </h3>
         <p>${hello()}</p>`
+    } else {
+        mainEl!.innerHTML += `<h3>
+            No dynamic imports...
+        </h3>`
     }
 })()
