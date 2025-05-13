@@ -15,10 +15,10 @@ export function staticImport ():boolean {
 /**
  * Are dynamic imports supported?
  */
-export async function dynamicImport (path:string):Promise<boolean> {
+export async function dynamicImport (path:string):Promise<any> {
     try {
-        await import(path)
-        return true
+        const imported = await import(path)
+        return imported
     } catch (_err) {
         console.log('errrrrrr', _err)
         return false

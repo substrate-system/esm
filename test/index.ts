@@ -1,6 +1,9 @@
 import Bowser from 'bowser'
 import { importMap, dynamicImport, staticImport } from '../src/index.js'
 
+// @ts-expect-error testing
+window.test = { importMap, dynamicImport, staticImport };
+
 (async function () {
     const mainEl = document.querySelector('main')
     const importMapOk = importMap()
@@ -21,14 +24,14 @@ import { importMap, dynamicImport, staticImport } from '../src/index.js'
         <p>${importMapOk}</p>
 
         <h3>dynamic imports</h3>
-        <p>${dynamic}</p>
+        <p>${!!dynamic}</p>
 
         <h3>static imports</h3>
         <p>${staticOk}</p>
     `
 
     if (dynamic) {
-        const { hello } = await import('./test.js')
+        const { hello } = dynamic
         mainEl!.innerHTML += `<h3>
             output from the dynamicly imported file...
         </h3>
