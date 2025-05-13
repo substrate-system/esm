@@ -24,7 +24,7 @@
   },
   "scripts": {
     "lint": "eslint \"./**/*.{ts,js}\"",
-    "build-tests:browserling": "mkdir -p ./public && rm -rf ./public/* && cp ./_public/* public && esbuild ./test/index.ts --bundle --format=umd --keep-names > public/bundle.js",
+    "build-tests:browserling": "mkdir -p ./public && rm -rf ./public/* && cp ./_public/* public && esbuild ./test/index.ts --bundle --format=iife --keep-names > public/bundle.js",
     "build-cjs": "esbuild src/*.ts --format=cjs --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --out-extension:.js=.cjs --sourcemap",
     "build-cjs:min": "esbuild src/*.ts --format=cjs --minify --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --out-extension:.js=.min.cjs --sourcemap",
     "build-esm": "esbuild src/*.ts --format=esm --metafile=dist/meta.json --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --sourcemap && tsc --emitDeclarationOnly --project tsconfig.build.json --outDir dist",
