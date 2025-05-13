@@ -1,7 +1,8 @@
 {
-  "private": true,
+  "name": "@substrate-system/esm",
   "type": "module",
   "version": "0.0.0",
+  "description": "Feature detection for modules",
   "main": "dist/index.js",
   "files": [
     "./dist/*"
@@ -39,6 +40,7 @@
     "postversion": "git push --follow-tags && npm publish",
     "prepublishOnly": "npm run build"
   },
+  "dependencies": {},
   "devDependencies": {
     "@preact/preset-vite": "^2.9.0",
     "@substrate-system/debug": "^0.7.14",
@@ -50,15 +52,23 @@
     "esbuild": "^0.25.0",
     "eslint": "^8.57.0",
     "eslint-config-standard": "^17.1.0",
-    "htm": "^3.1.1",
     "markdown-toc": "^1.2.0",
     "postcss-nesting": "^13.0.1",
-    "preact": "^10.26.6",
-    "saucectl": "^0.195.1",
     "typedoc": "^0.28.1",
-    "typescript": "^5.7.2",
-    "vite": "^6.3.5"
+    "typescript": "^5.7.2"
   },
   "author": "nichoth <nichoth@nichoth.com> (https://nichoth.com)",
-  "license": "MIT"
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/substrate-system/esm.git"
+  },
+  "keywords": [
+    "esm"
+  ],
+  "types": "./dist/index.d.ts",
+  "bugs": {
+    "url": "https://github.com/substrate-system/esm/issues"
+  },
+  "homepage": "https://github.com/substrate-system/esm"
 }
