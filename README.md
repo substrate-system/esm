@@ -1,9 +1,9 @@
 # esm
-[![types](https://img.shields.io/npm/types/@substrate-system/icons?style=flat-square)](README.md)
+[![types](https://img.shields.io/npm/types/@substrate-system/esm?style=flat-square)](README.md)
 [![module](https://img.shields.io/badge/module-ESM%2FCJS-blue?style=flat-square)](README.md)
 [![semantic versioning](https://img.shields.io/badge/semver-2.0.0-blue?logo=semver&style=flat-square)](https://semver.org/)
 [![Common Changelog](https://nichoth.github.io/badge/common-changelog.svg)](./CHANGELOG.md)
-[![install size](https://flat.badgen.net/packagephobia/install/@nichoth/session-cookie)](https://packagephobia.com/result?p=@nichoth/session-cookie)
+[![install size](https://flat.badgen.net/packagephobia/install/@substrate-system/esm)](https://packagephobia.com/result?p=@substrate-system/esm)
 [![dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen.svg?style=flat-square)](package.json)
 [![license](https://img.shields.io/badge/license-Polyform_Small_Business-249fbc?style=flat-square)](LICENSE)
 
@@ -11,7 +11,18 @@
 Feature detection for modules + dynamic imports.
 
 <details><summary><h2>Contents</h2></summary>
+
 <!-- toc -->
+
+- [Install](#install)
+- [Use](#use)
+  * [ESM + Bundler](#esm--bundler)
+  * [Common JS](#common-js)
+  * [pre-built JS](#pre-built-js)
+- [example](#example)
+
+<!-- tocstop -->
+
 </details>
 
 ## Install
@@ -20,48 +31,21 @@ Feature detection for modules + dynamic imports.
 npm i -S @substrate-system/esm
 ```
 
-## API
-
+## Use
 This exposes ESM and common JS via [package.json `exports` field](https://nodejs.org/api/packages.html#exports).
 
-### ESM
+### ESM + Bundler
 ```js
-import '@namespace/package/module'
+import {
+    importMap,
+    dynamicImport,
+    staticImport
+} from '@substrate-system/esm'
 ```
 
 ### Common JS
 ```js
-require('@namespace/package/module')
-```
-
-## CSS
-
-### Import CSS
-
-```js
-import '@namespace/package-name/css'
-```
-
-Or minified:
-```js
-import '@namespace/package-name/css/min'
-```
-
-### Customize CSS via some variables
-
-```css
-component-name {
-    --example: pink;
-}
-```
-
-## use
-
-`usage instructions here`
-
-### JS
-```js
-import '@namespace/package/module'
+require('@substrate-system/esm')
 ```
 
 ### pre-built JS
@@ -70,10 +54,20 @@ accessible to your web server, then link to them in HTML.
 
 #### copy
 ```sh
-cp ./node_modules/@namespace/package/dist/module.min.js ./public
+cp ./node_modules/@substrate-system/package/dist/module.min.js ./public
 ```
 
 #### HTML
 ```html
 <script type="module" src="./module.min.js"></script>
+```
+
+## example
+
+```js
+import { importMap, dynamicImport, staticImport } from '@substrate-system/esm'
+
+const importMapOk = importMap()
+const dynamic = await dynamicImport('./test.js')
+const staticOk = staticImport()
 ```
