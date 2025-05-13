@@ -54,6 +54,7 @@
     "markdown-toc": "^1.2.0",
     "postcss-nesting": "^13.0.1",
     "preact": "^10.26.6",
+    "saucectl": "^0.195.1",
     "typedoc": "^0.28.1",
     "typescript": "^5.7.2",
     "vite": "^6.3.5"
