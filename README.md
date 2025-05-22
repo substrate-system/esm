@@ -21,7 +21,7 @@ Feature detection for modules (ESM) + dynamic imports.
   * [ESM + Bundler](#esm--bundler)
   * [Common JS](#common-js)
   * [pre-built JS](#pre-built-js)
-- [example](#example)
+- [Example](#example)
 - [Build](#build)
   * [Application code](#application-code)
   * [Dependencies](#dependencies)
@@ -67,7 +67,7 @@ cp ./node_modules/@substrate-system/esm/dist/index.min.js ./public/esm.min.js
 <script type="module" src="./esm.min.js"></script>
 ```
 
-## example
+## Example
 
 ```js
 import { importMap, esm, umd } from '@substrate-system/esm'
