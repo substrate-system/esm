@@ -1,26 +1,13 @@
 /**
- * Are static imports supported?
- *
- * @returns {boolean}
+ * Dynamic imports?
  */
-export function staticImport ():boolean {
+export function esm ():boolean {
     try {
-        new Function('import("")')  // eslint-disable-line
+        // eslint-disable-next-line
+        new Function('return import("")')
         return true
-    } catch (_err) {
-        return false
-    }
-}
-
-/**
- * Are dynamic imports supported?
- */
-export async function dynamicImport (path:string):Promise<any> {
-    try {
-        const imported = await import(path)
-        return imported
-    } catch (_err) {
-        console.log('errrrrrr', _err)
+    } catch (err) {
+        console.log('errrrrr', err)
         return false
     }
 }
@@ -30,4 +17,27 @@ export async function dynamicImport (path:string):Promise<any> {
  */
 export function importMap ():boolean {
     return HTMLScriptElement.supports?.('importmap')
+}
+
+/**
+ * Load scripts via `<script>` tags.
+ */
+export async function umd (...files:string[]):Promise<void> {
+    await Promise.all(files.map(f => scriptTag(f)))
+
+    // Small delay to ensure scripts are initialized
+    await new Promise(resolve => setTimeout(resolve, 50))
+}
+
+/**
+ * Load a script via script tag
+ */
+function scriptTag (src:string):Promise<void> {
+    return new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = src
+        script.onload = () => resolve()
+        script.onerror = () => reject(new Error(`Failed to load script: ${src}`))
+        document.head.appendChild(script)
+    })
 }

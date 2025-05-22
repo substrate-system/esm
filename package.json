@@ -12,6 +12,10 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
+    "./min/*": {
+      "import": "./dist/*.min.js",
+      "require": "./dist/*.min.cjs"
+    },
     "./*": {
       "import": [
         "./dist/*.js",
@@ -25,7 +29,12 @@
   },
   "scripts": {
     "lint": "eslint \"./**/*.{ts,js}\"",
-    "build-tests:browserling": "mkdir -p ./public && rm -rf ./public/* && cp ./_public/* public && esbuild ./test/index.ts --external:\"./test.js\" --bundle --format=iife --keep-names > public/bundle.js && esbuild ./test/test.ts --format=esm > ./public/test.js",
+    "build-tests": "esbuild ./test/index.ts --external:\"./test.js\" --bundle --keep-names > public/bundle.js && esbuild ./test/test.ts --format=esm > ./public/test.js && npm run build-dependency",
+    "build-dependency": "esbuild ./test/test.ts --platform=browser --format=esm --bundle --keep-names > public/test.esm.js",
+    "build-tests:iife": "esbuild ./test/index.ts --external:\"./test.js\" --platform=browser --format=iife --bundle --keep-names > public/bundle.js",
+    "build-dependency:iife": "esbuild ./test/test.ts --platform=browser --global-name=test --format=iife --bundle --keep-names > public/test.js",
+    "build-tests:2016": "esbuild ./test/index.ts --target=es2016 --external:\"./test.js\" --bundle --format=iife --keep-names > public/bundle.js",
+    "build-dependency:2016": "esbuild ./test/test.ts --platform=browser --target=es2016 --format=iife --global-name=test --bundle --keep-names > public/test.js",
     "build-cjs": "esbuild src/*.ts --format=cjs --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --out-extension:.js=.cjs --sourcemap",
     "build-cjs:min": "esbuild src/*.ts --format=cjs --minify --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --out-extension:.js=.min.cjs --sourcemap",
     "build-esm": "esbuild src/*.ts --format=esm --metafile=dist/meta.json --keep-names --tsconfig=tsconfig.build.json --outdir=./dist --sourcemap && tsc --emitDeclarationOnly --project tsconfig.build.json --outDir dist",
@@ -33,7 +42,9 @@
     "build-example": "mkdir -p ./public && rm -rf ./public/* && VITE_DEBUG_MODE=staging vite --mode staging --base=\"/repo-name\" build",
     "build-docs": "typedoc ./src/index.ts",
     "build": "mkdir -p ./dist && rm -rf ./dist/* && npm run build-cjs && npm run build-esm && npm run build-esm:min && npm run build-cjs:min",
-    "start": "npm run build-tests:browserling && ecstatic public",
+    "start": "mkdir -p ./public && rm -rf ./public/* && cp ./_public/* public && npm run build-tests && npm run build-dependency && ecstatic public",
+    "start:iife": "mkdir -p public && rm -rf ./public/* && cp ./_public/* public && npm run build-tests:iife && npm run build-dependency:iife && ecstatic ./public",
+    "start:2016": "mkdir -p public && rm -rf ./public/* && cp ./_public/* public && npm run build-tests:2016 && npm run build-dependency:2016 && ecstatic ./public",
     "toc": "markdown-toc --maxdepth 3 -i README.md",
     "preversion": "npm run lint",
     "version": "npm run toc && auto-changelog -p --template keepachangelog --breaking-pattern 'BREAKING CHANGE:' && git add CHANGELOG.md README.md",
