@@ -21,6 +21,9 @@ Feature detection for modules + dynamic imports.
   * [Common JS](#common-js)
   * [pre-built JS](#pre-built-js)
 - [example](#example)
+- [Build](#build)
+  * [Application code](#application-code)
+  * [Dependencies](#dependencies)
 
 <!-- tocstop -->
 
