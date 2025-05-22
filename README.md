@@ -10,7 +10,7 @@
 [![license](https://img.shields.io/badge/license-Big_Time-blue?style=flat-square)](LICENSE)
 
 
-Feature detection for modules + dynamic imports.
+Feature detection for modules (ESM) + dynamic imports.
 
 <details><summary><h2>Contents</h2></summary>
 
