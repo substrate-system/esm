@@ -1,15 +1,16 @@
 # esm
-[![types](https://img.shields.io/npm/types/@substrate-system/esm?style=flat-square)](README.md)
-[![module](https://img.shields.io/badge/module-ESM%2FCJS-blue?style=flat-square)](README.md)
+[![GitHub Pages deploy](https://img.shields.io/github/actions/workflow/status/substrate-system/esm/gh-pages.yml?style=flat-square)](https://github.com/substrate-system/esm/actions/workflows/gh-pages.yml)
 [![semantic versioning](https://img.shields.io/badge/semver-2.0.0-blue?logo=semver&style=flat-square)](https://semver.org/)
-[![Common Changelog](https://nichoth.github.io/badge/common-changelog.svg)](./CHANGELOG.md)
 [![GZip size](https://img.badgesize.io/https%3A%2F%2Fesm.sh%2F%40substrate-system%2Fesm%2Fes2022%2Fesm.mjs?compression=gzip&style=flat-square)](https://esm.sh/@substrate-system/esm/es2022/esm.mjs)
 [![install size](https://flat.badgen.net/packagephobia/install/@substrate-system/esm)](https://packagephobia.com/result?p=@substrate-system/esm)
+[![types](https://img.shields.io/npm/types/@substrate-system/esm?style=flat-square)](README.md)
+[![module](https://img.shields.io/badge/module-ESM%2FCJS-blue?style=flat-square)](README.md)
+[![Common Changelog](https://nichoth.github.io/badge/common-changelog.svg)](./CHANGELOG.md)
 [![dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen.svg?style=flat-square)](package.json)
 [![license](https://img.shields.io/badge/license-Big_Time-blue?style=flat-square)](LICENSE)
 
 
-Feature detection for modules + dynamic imports.
+Feature detection for modules (ESM) + dynamic imports.
 
 <details><summary><h2>Contents</h2></summary>
 
@@ -90,6 +91,9 @@ This requires some care with how you build your modules.
 
 ### Application code
 
+> [!NOTE]  
+> The argument `--external:"./test.js"`
+
 In your top-level module, be sure to build it with the given dependencies
 excluded, not bundled.
 
@@ -99,8 +103,8 @@ esbuild ./test/index.ts --external:"./test.js" --format=iife --bundle --keep-nam
 
 ### Dependencies
 
-> [!IMPORTANT]  
-> Note the `--global-name` argument
+> [!NOTE]  
+> The `--global-name` argument
 
 Given the example above, you would want to build your dependency module
 as an `IIFE` function, attached to `window` at `.test`, in addition to building

@@ -33,7 +33,7 @@ jobs:
       - name: Install
         run: npm install
       - name: Build
-        run: npm run build-tests && npm run build-dependency
+        run: mkdir -p public && npm run build-tests && npm run build-dependency && cp ./_public/* public 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
