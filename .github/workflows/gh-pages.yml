@@ -33,7 +33,7 @@ jobs:
       - name: Install
         run: npm install
       - name: Build
-        run: npm run build-tests:browserling
+        run: npm run build-tests && npm run build-dependency
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
