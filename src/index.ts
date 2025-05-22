@@ -6,8 +6,7 @@ export function esm ():boolean {
         // eslint-disable-next-line
         new Function('return import("")')
         return true
-    } catch (err) {
-        console.log('errrrrr', err)
+    } catch (_err) {
         return false
     }
 }
