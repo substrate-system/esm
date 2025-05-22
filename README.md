@@ -6,7 +6,7 @@
 [![GZip size](https://img.badgesize.io/https%3A%2F%2Fesm.sh%2F%40substrate-system%2Fesm%2Fes2022%2Fesm.mjs?compression=gzip&style=flat-square)](https://esm.sh/@substrate-system/esm/es2022/esm.mjs)
 [![install size](https://flat.badgen.net/packagephobia/install/@substrate-system/esm)](https://packagephobia.com/result?p=@substrate-system/esm)
 [![dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen.svg?style=flat-square)](package.json)
-[![license](https://img.shields.io/badge/license-Polyform_Small_Business-249fbc?style=flat-square)](LICENSE)
+[![license](https://img.shields.io/badge/license-Big_Time-blue?style=flat-square)](LICENSE)
 
 
 Feature detection for modules + dynamic imports.
@@ -71,8 +71,38 @@ import { importMap, esm, umd } from '@substrate-system/esm'
 const importMapOk = importMap()
 const dynamic = esm()
 
-if (!dynamic) {
+if (dynamic) {
+  const { hello } = await import('/test.js')
+  hello()
+} else {
   // load a UMD script
-  umd('/js/script.js')
+  await umd('/test.umd.js')
+  hello = globalThis.test.hello
+  hello()
 }
+```
+
+## Build
+This requires some care with how you build your modules.
+
+### Application code
+
+In your top-level module, be sure to build it with the given dependencies
+excluded, not bundled.
+
+```sh
+esbuild ./test/index.ts --external:"./test.js" --format=iife --bundle --keep-names > public/bundle.js
+```
+
+### Dependencies
+
+> [!IMPORTANT]  
+> Note the `--global-name` argument
+
+Given the example above, you would want to build your dependency module
+as an `IIFE` function, attached to `window` at `.test`, in addition to building
+it as a normal ESM module.
+
+```sh
+esbuild ./src/test.ts --global-name=test --format=iife --bundle --keep-names > public/test.umd.js
 ```
