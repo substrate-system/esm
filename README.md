@@ -4,7 +4,7 @@
 [![types](https://img.shields.io/npm/types/@substrate-system/esm?style=flat-square)](README.md)
 [![module](https://img.shields.io/badge/module-ESM%2FCJS-blue?style=flat-square)](README.md)
 [![Common Changelog](https://nichoth.github.io/badge/common-changelog.svg)](./CHANGELOG.md)
-[![GZip size](https://img.shields.io/bundlephobia/minzip/@substrate-system/esm?style=flat-square&color=green)](https://bundlephobia.com/package/@substrate-system/esm)
+[![GZip size](https://img.shields.io/bundlephobia/minzip/@substrate-system/esm?style=flat-square&color=brightgreen)](https://bundlephobia.com/package/@substrate-system/esm)
 [![install size](https://flat.badgen.net/packagephobia/install/@substrate-system/esm)](https://packagephobia.com/result?p=@substrate-system/esm)
 [![dependencies](https://img.shields.io/badge/dependencies-zero-brightgreen.svg?style=flat-square)](package.json)
 [![license](https://img.shields.io/badge/license-Big_Time-blue?style=flat-square)](LICENSE)
