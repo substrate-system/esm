@@ -68,6 +68,13 @@ cp ./node_modules/@substrate-system/esm/dist/index.min.js ./public/esm.min.js
 <script type="module" src="./esm.min.js"></script>
 ```
 
+### CSP
+You will need to add `unsafe-eval` to your CSP.
+
+```
+script-src 'self' 'unsafe-eval';
+```
+
 ## Example
 
 ```js
