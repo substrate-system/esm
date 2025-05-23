@@ -25,6 +25,7 @@ Feature detection for modules (ESM) + dynamic imports.
 - [Build](#build)
   * [Application code](#application-code)
   * [Dependencies](#dependencies)
+- [develop](#develop)
 
 <!-- tocstop -->
 
