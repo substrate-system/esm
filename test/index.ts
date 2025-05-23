@@ -1,5 +1,7 @@
+import Debug from '@substrate-system/debug'
 import Bowser from 'bowser'
 import { esm, importMap, umd } from '../src/index.js'
+const debug = Debug()
 
 // @ts-expect-error dev
 window.testing = { esm, importMap, umd };
@@ -35,8 +37,9 @@ window.testing = { esm, importMap, umd };
         // for example, does not use esm
 
         // normally you would not need to do this, because the `dynamicOk`
-        // variable tell us if `hello` should be defined.
+        // variable tells us if `hello` should be defined.
         if (!hello) {
+            debug('not hello, getting UMD version')
             await umd('./test.js')
             hello = globalThis.test.hello
         }
@@ -46,6 +49,7 @@ window.testing = { esm, importMap, umd };
         </h3>
         <p>${hello()}</p>`
     } else {
+        debug('not dynamic imports, getting UMD version')
         await umd('./test.js')
         mainEl!.innerHTML += `<h3>
             No dynamic imports...

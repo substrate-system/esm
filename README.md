@@ -113,3 +113,31 @@ it as a normal ESM module.
 ```sh
 esbuild ./src/test.ts --global-name=test --format=iife --bundle --keep-names > public/test.umd.js
 ```
+
+## develop
+
+Three commands:
+
+Build the file, and start a server:
+
+```sh
+npm start
+```
+
+Build the files in `iife` format, and start a server:
+
+```sh
+npm run start:iife
+```
+
+Build in `2016` compatibility mode:
+
+```sh
+npm run start:2016
+```
+
+Development is a little bit janky because there is not an easy way to start
+an old version of a browser.
+
+That's why, in the iife and `2016` versions, we do an extra check, besides
+looking at `esm()`.
