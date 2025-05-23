@@ -37,8 +37,30 @@ Feature detection for modules (ESM) + dynamic imports.
 npm i -S @substrate-system/esm
 ```
 
+## API
+
+### `esm`
+Dynamic imports?
+
+```ts
+function esm ():boolean
+```
+
+### `importMap`
+Is `importmap` supported?
+
+```ts
+function importMap ():boolean
+```
+
+### `umd(...files:string[])`
+Create script tags in the document, and wait for them to load.
+
+```ts
+async function umd (...files:string[]):Promise<void>
+```
+
 ## Use
-This exposes ESM and common JS via [package.json `exports` field](https://nodejs.org/api/packages.html#exports).
 
 ### ESM + Bundler
 ```js
@@ -55,8 +77,8 @@ require('@substrate-system/esm')
 ```
 
 ### pre-built JS
-This package exposes minified JS files too. Copy them to a location that is
-accessible to your web server, then link to them in HTML.
+Copy the minified files to a location that is accessible to your web server,
+then link to them in HTML.
 
 #### copy
 ```sh
@@ -77,6 +99,11 @@ script-src 'self' 'unsafe-eval';
 
 ## Example
 
+> [!NOTE]  
+> This would be for a script built with `esbuild` & a "global name" of `test`:
+> `--global-name=test`. The name you access on `globalThis` depends on your
+> build process.
+
 ```js
 import { importMap, esm, umd } from '@substrate-system/esm'
 
@@ -95,14 +122,15 @@ if (dynamic) {
 ```
 
 ## Build
-This requires some care with how you build your modules.
+If you need to support both newer platforms, and also platforms without
+ES modules, then build a UMD version in addition to building modules.
 
 ### Application code
 
 > [!NOTE]  
 > The argument `--external:"./test.js"`
 
-In your top-level module, be sure to build it with the given dependencies
+In your top-level module, build it with the relevant dependencies
 excluded, not bundled.
 
 ```sh
