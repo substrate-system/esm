@@ -100,8 +100,8 @@ script-src 'self' 'unsafe-eval';
 ## Example
 
 > [!NOTE]  
-> This would be for a script built with `esbuild` & a "global name" of `test`:
-> `--global-name=test`. The name you access on `globalThis` depends on your
+> This would be for a script built a "global name" of `test`,
+> e.g. `--global-name=test`. The name you access on `globalThis` depends on your
 > build process.
 
 ```js
