@@ -121,6 +121,8 @@ if (dynamic) {
 } else {
   // load a UMD script
   await umd('/test.umd.js')
+
+  // now we have a global variable
   hello = globalThis.test.hello
   hello()
 }
