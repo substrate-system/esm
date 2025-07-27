@@ -17,10 +17,15 @@ Feature detection for modules (ESM) + dynamic imports.
 <!-- toc -->
 
 - [Install](#install)
+- [API](#api)
+  * [`ES Modules`](#es-modules)
+  * [`importMap`](#importmap)
+  * [`umd(...files:string[])`](#umdfilesstring)
 - [Use](#use)
   * [ESM + Bundler](#esm--bundler)
   * [Common JS](#common-js)
   * [pre-built JS](#pre-built-js)
+  * [CSP](#csp)
 - [Example](#example)
 - [Build](#build)
   * [Application code](#application-code)
@@ -39,7 +44,7 @@ npm i -S @substrate-system/esm
 
 ## API
 
-### `esm`
+### `ES Modules`
 Dynamic imports?
 
 ```ts
